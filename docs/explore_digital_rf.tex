@@ -1,3 +1,41 @@
+
+
+\documentclass[oneside,letterpaper,12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=0.8874in,bottom=0.8874in,left=0.7874in,right=0.7874in]{geometry}
+\usepackage{charter}
+\usepackage{color}
+\usepackage{array,ragged2e}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, linkcolor=red]{hyperref}
+\usepackage{amsmath}
+\usepackage{titling,lipsum}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{parskip}
+
+%opening
+\title{}
+\author{}
+
+\begin{document}
+	
+\include{cover/cover}
+
+\frontmatter
+Fun with GNU Radio and Digital RF
+
+Copyright 2018 by Gregory Raven
+%\maketitle
+\tableofcontents
+\listoftables
+\listoffigures
+	
+
+\mainmatter
+
 \chapter{Setting up Python Environments}
 
 Ubuntu 18.04 has Python 3.7.  To install:
@@ -139,7 +177,7 @@ The build and installation process will take a long time, perhaps an hour or mor
 
 \section{Installation of gr-sdrplay}
 
-\section{Installation of Digital_RF}
+\section{Installation of Digital\_RF}
 
 Installation of the Digital\_RF Package is relatively easy.
 
@@ -166,6 +204,10 @@ If this file was not created during installation, create it file here:
 [grc]
 local_blocks_path = /home/(username)/.local/share/gnuradio/grc/blocks
 \end{verbatim}
+
+\backmatter
+
+\end{document}
 
 
 
