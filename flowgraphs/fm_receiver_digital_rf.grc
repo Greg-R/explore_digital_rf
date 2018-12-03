@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.11'?>
+<?grc format='1' created='3.7.13'?>
 <flow_graph>
   <timestamp>Mon Jun  1 01:22:53 2015</timestamp>
   <block>
@@ -105,7 +105,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 11)</value>
+      <value>(448, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -167,7 +167,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(8, 139)</value>
+      <value>(568, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -183,14 +183,10 @@
     </param>
   </block>
   <block>
-    <key>variable_qtgui_entry</key>
+    <key>variable</key>
     <param>
       <key>comment</key>
       <value></value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>105.9e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -198,11 +194,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(184, 11)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
+      <value>(288, 348)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -210,15 +202,38 @@
     </param>
     <param>
       <key>id</key>
-      <value>freq</value>
+      <value>data_path</value>
     </param>
     <param>
-      <key>label</key>
+      <key>value</key>
+      <value>'/mnt/ds216/gitrepos/explore_digital_rf/digital_rf_data'</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
       <value></value>
     </param>
     <param>
-      <key>type</key>
-      <value>real</value>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(280, 420)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>data_path</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>'/home/raven/digital_rf_data/fm_receiver'</value>
     </param>
   </block>
   <block>
@@ -229,7 +244,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>105.9e6</value>
+      <value>101.5e6</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -237,7 +252,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 112)</value>
+      <value>(304, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -273,7 +288,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>109.9e6</value>
+      <value>104.9e6</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -308,7 +323,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>8e6</value>
+      <value>10.0e6</value>
     </param>
   </block>
   <block>
@@ -323,7 +338,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(120, 139)</value>
+      <value>(680, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -346,7 +361,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>5</value>
+      <value>3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -354,7 +369,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(320, 11)</value>
+      <value>(192, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -413,7 +428,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(240, 139)</value>
+      <value>(800, 12)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -432,7 +447,7 @@
     <key>analog_wfm_rcv</key>
     <param>
       <key>audio_decimation</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>alias</key>
@@ -452,7 +467,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 292)</value>
+      <value>(632, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -499,7 +514,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 460)</value>
+      <value>(728, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -520,6 +535,57 @@
     <param>
       <key>samp_rate</key>
       <value>48000</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_sink</key>
+    <param>
+      <key>append</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/raven/file_sink_data</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(312, 484)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_sink_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>unbuffered</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -546,7 +612,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 540)</value>
+      <value>(520, 444)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -601,7 +667,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1128, 524)</value>
+      <value>(728, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -648,7 +714,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 260)</value>
+      <value>(272, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -691,7 +757,7 @@
     </param>
     <param>
       <key>center_freqs</key>
-      <value></value>
+      <value>101.1e6</value>
     </param>
     <param>
       <key>comment</key>
@@ -711,11 +777,11 @@
     </param>
     <param>
       <key>dir</key>
-      <value>/home/raven/digital_rf_data</value>
+      <value>data_path</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file_cadence_ms</key>
@@ -723,7 +789,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 356)</value>
+      <value>(328, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -802,7 +868,7 @@
     </param>
     <param>
       <key>dir</key>
-      <value>/mnt/ds214/sdr/digital_rf_data</value>
+      <value>data_path</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -814,7 +880,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 540)</value>
+      <value>(8, 380)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -889,7 +955,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 556)</value>
+      <value>(552, 252)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -917,7 +983,7 @@
     </param>
     <param>
       <key>samp_rate</key>
-      <value>working_samp_rate</value>
+      <value>working_samp_rate/2</value>
     </param>
     <param>
       <key>width</key>
@@ -956,7 +1022,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -964,7 +1030,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(72, 620)</value>
+      <value>(8, 444)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -992,7 +1058,7 @@
     </param>
     <param>
       <key>plotconst</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>plotfreq</key>
@@ -1000,11 +1066,11 @@
     </param>
     <param>
       <key>plottime</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>plotwaterfall</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>showports</key>
@@ -1024,7 +1090,7 @@
     </param>
     <param>
       <key>wintype</key>
-      <value>firdes.WIN_BLACKMAN_hARRIS</value>
+      <value>firdes.WIN_BLACKMAN</value>
     </param>
   </block>
   <block>
@@ -1063,7 +1129,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(632, 116)</value>
+      <value>(632, 84)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1127,105 +1193,6 @@
     </param>
   </block>
   <block>
-    <key>qtgui_sink_x</key>
-    <param>
-      <key>bw</key>
-      <value>working_samp_rate</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>fc</key>
-      <value>center_freq</value>
-    </param>
-    <param>
-      <key>freqchangevar</key>
-      <value>None</value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>fftsize</key>
-      <value>1024</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(736, 628)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>qtgui_sink_x_0_0_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>name</key>
-      <value>""</value>
-    </param>
-    <param>
-      <key>plotconst</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>plotfreq</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>plottime</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>plotwaterfall</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>showports</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>showrf</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>rate</key>
-      <value>10</value>
-    </param>
-    <param>
-      <key>wintype</key>
-      <value>firdes.WIN_BLACKMAN_hARRIS</value>
-    </param>
-  </block>
-  <block>
     <key>rational_resampler_xxx</key>
     <param>
       <key>alias</key>
@@ -1241,7 +1208,7 @@
     </param>
     <param>
       <key>decim</key>
-      <value>int(working_samp_rate)</value>
+      <value>int(working_samp_rate/2)</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1253,7 +1220,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 516)</value>
+      <value>(752, 276)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1296,7 +1263,7 @@
     </param>
     <param>
       <key>bw</key>
-      <value>8000</value>
+      <value>5000</value>
     </param>
     <param>
       <key>alias</key>
@@ -1328,7 +1295,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 260)</value>
+      <value>(8, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1400,7 +1367,7 @@ iso_time = datetime.datetime.now().replace(microsecond=0).isoformat() +'Z'
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 368)</value>
+      <value>(456, 84)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1449,6 +1416,12 @@ iso_time = datetime.datetime.now().replace(microsecond=0).isoformat() +'Z'
   </connection>
   <connection>
     <source_block_id>gr_digital_rf_digital_rf_channel_source_0</source_block_id>
+    <sink_block_id>gr_digital_rf_digital_rf_channel_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>gr_digital_rf_digital_rf_channel_source_0</source_block_id>
     <sink_block_id>qtgui_sink_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -1462,6 +1435,12 @@ iso_time = datetime.datetime.now().replace(microsecond=0).isoformat() +'Z'
   <connection>
     <source_block_id>rational_resampler_xxx_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>sdrplay_rsp2_source_0</source_block_id>
+    <sink_block_id>blocks_file_sink_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

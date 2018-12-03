@@ -30,181 +30,20 @@ Fun with GNU Radio and Digital RF
 Copyright 2018 by Gregory Raven
 %\maketitle
 \tableofcontents
-\listoftables
 \listoffigures
 	
 
 \mainmatter
 
-\chapter{Setting up Python Environments}
-
-Ubuntu 18.04 has Python 3.7.  To install:
-
-sudo apt-get install python3.7
-
-The binary is installed here:
-
-/usr/bin/python3.7
-
-\section{Create a Python Environment}
-
-python3.7 -m venv py37
-
-To launch the environment:
-
-cd py37/bin
-source activate
-
-This should appear to the left of the usual bash prompt:
-
-(py37)
-
-To exit the environment:
-
-deactivate
-
-Will need to install virtualenv, as Python 2.7 does not have venv.
-
-sudo apt-get install virtualenv
-
-\section{Install Spyder IDE}
-
-As of October 2018, Spyder does not build with Python 3.7.
-Create a Python 3.6 env and enter it.
-
-\begin{verbatim}
-(py36) bash_prompt$  pip3.6 install spyder
-\end{verbatim}
-
-\section{Prerequisites for GNU Radio}
-
-Here is the most detailed ``build guide'' for GNU Radio:
-
-\url{https://wiki.gnuradio.org/index.php/BuildGuide}
-
-The guide has a link to another page with various distributions and their prerequisites.
-Here is the link for Ubuntu:
-
-\url{https://wiki.gnuradio.org/index.php/UbuntuInstall}
-
-Note that the link to Debian doesn't contain any relevant install information.
-However, since Ubuntu is a derivative of Debian, the Ubuntu prerequisite list
-should be all or mostly good.
-
-Install the following using apt-get:
-
-\begin{verbatim}
-sudo apt-get -y install git cmake g++ python-dev swig  \
-pkg-config libfftw3-dev libboost-all-dev libcppunit-dev libgsl-dev \
-libusb-dev libsdl1.2-dev python-wxgtk3.0 python-numpy python-cheetah \
-python-lxml doxygen libxi-dev python-sip libqt4-opengl-dev libqwt-dev \
-libfontconfig1-dev libxrender-dev python-sip python-sip-dev python-qt4 \
-python-sphinx libusb-1.0-0-dev libcomedi-dev libzmq3-dev python-mako \
-python-gtk2
-\end{verbatim}
-
-
-\section{Special Requirements for Pygtk and PyQt4}
-
-
-
-\section{Something that forces Python 2.7, what was it???}
-
-\section{Installation of GNU Radio}
-
-GNU Radio has a large number of dependencies.  Due to the difficulty of installing everything correctly, a special script is available which does most of the work.
-
-It is called ``PyBOMBS'':
-
-\url{https://www.gnuradio.org/blog/pybombs-the-what-the-how-and-the-why}
-
-Forget about trying to install inside a Python environment.  It is possible to
-accomplish, but there are problems with some of the dependencies which make
-this hard to accomplish.
-
-\subsection{Using the Distribution GNU Radio Package}
-
-It is easy enough on Debian and Ubuntu to install the bundled-up version of GNU Radio:
-
-sudo apt-get install gnuradio
-
-Typically these distribution software packages can be well tested, but older versions.
-In my tests, I found that the current Ubuntu repository installs version 3.7.11.  Debian is installing 3.7.10.
-A manual install described below results in version 3.7.13.4.
-
-I typically like to use the latest-and-greatest.  However, be warned that manual install
- and build of GNU Radio may not proceed easily.  It's a very complex software suite with
- numerous dependencies.
-
-\subsection{Debian/Ubuntu GNU Radio Development Package}
-
-sudo apt-get install gnuradio-dev
-
-\subsection{Pybombs Installation Script}
-
-GNU Radio has so many dependencies, that a Python installer script was developed.
-It is also possible to install with the usual "Make" tools.  It appears that even
-this is difficult, and Pybombs was developed specifically for the requirements of
-GNU Radio and installation or skipping of possible features or variants.
-
-The Pybombs script allows for creating of multiple ''prefixes'', so installation
-of variants is easy to accomplish.  This serves the same purpose as having multiple
-environments.
-
-Using the Python install tool ``pip'':
-
-pip install pybombs
-
-Next, make a directory.  This will become the ``prefix'' directory:
-
-mkdir gnuradio1
-
-Now use pybombs to initialize the prefix:
-
-pybombs prefix init gnuradio1
-
-The prefix is now loaded with GNU Radio default recipes:
-
-pybombs -p gnuradio1 recipes add-defaults
-
-Build and install GNU Radio to the prefix:
-
-pybombs -p gnuradio3 install gnuradio
-
-The build and installation process will take a long time, perhaps an hour or more.
-
-\section{Installation of the SDRPlay Driver}
-
-\section{Installation of gr-sdrplay}
-
-\section{Installation of Digital\_RF}
-
-Installation of the Digital\_RF Package is relatively easy.
-
-The easiest way to install is via pip:
-
-\begin{verbatim}
-pip install digital_rf
-\end{verbatim}
-
-This may install the blocks files in an unusual location:
-
-\begin{verbatim}
-/home/(username)/.local/share/gnuradio/grc/blocks
-\end{verbatim}
-
-This path needs to be added to the file config.conf as follows.
-If this file was not created during installation, create it file here:
-
-\begin{verbatim}
-/home/(userid)/.gnuradio/config.conf
-\end{verbatim}
-
-\begin{verbatim}
-[grc]
-local_blocks_path = /home/(username)/.local/share/gnuradio/grc/blocks
-\end{verbatim}
-
+\include{tex/introduction}
+\include{tex/digital_rf_install}
+\include{tex/sdrplay_install}
+\include{tex/digital_rf_sink}
+\include{tex/slow_hardware}
+\include{tex/hdf5_data}
+\include{tex/conclusion}
+\appendix
+\include{tex/appendix}
 \backmatter
 
 \end{document}

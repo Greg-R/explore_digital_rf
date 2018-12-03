@@ -1,5 +1,129 @@
-\chapter{A Simple Flowgraph with a Digital RF Sink}
+\chapter{GNU Radio Flowgraph with Digital RF Sink and Source}
 
 Getting GNU Radio installed and working properly is the hardest part of this project.
 Next is the fun part!  It is time to capture data using Digital RF.
 
+Both the SDRPlay and Digital RF components will appear in the ``(no module specified)'' menu in the lower right corner of GNU Radio companion:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{photos/grc_sinks_sources}
+	\centering\bfseries
+	\caption{GNU Radio Companion ''(no module specified)''}
+\end{figure}
+
+The SDRPlay will require the ``RSP2 Source.''  We will use the ``Digital RF Channel Sink'' and the ``Digital RF Channel Source'' for experimenting with Digital RF.
+
+\section{FM Broadcast Receiver ``Flowgraph''}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{photos/fm_receiver_grc1}
+	\centering\bfseries
+	\caption{GRC Flowgraph with RSP2 Source and Digital RF Sources and Sinks}
+\end{figure}
+
+The flowgraph is a simple DSP implementation of an FM broadcast receiver.
+
+Why FM broadcast?  The provides a consistent set of evenly spaced signals (every 200 kHz) which is easy to demodulate for testing purposes.  A small whip antenna connected directly to the RSP2 provided sufficiently strong signals across the FM broadcast band.
+
+Components can be enabled and disabled in the GRC flowgraph.  The image above shows several of the components disabled.  This functionality was used in various experiments with reading from and writing to the Digital RF sinks and sources.
+
+\section{FM Broadcast Spectrum as Received by the RSP2}
+
+The RSP2 bandwidth and sample rate was empirically adjusted to find the maximum bandwidth possible using the Lenovo TS140 machine.  The bandwidth is set to 5 MHz, with a barely Nyquist sample rate of 10 MHz.  Attempting to push the bandwidth above this resulted in lots of undersampling in the Linux Pulseaudio system.  This is easily heard as distorted audio from the speaker.
+
+5 MHz was deemed acceptable bandwidth for the purposes of this project.  The RSP2 claims 8 MHz maximum bandwidth.  Perhaps some future optimizations will allow reaching its upper limit.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{photos/fm_spectrum}
+	\centering\bfseries
+	\caption{5 MHz Chunk of the FM Broadcast Spectrum as Seen by the RSP2}
+\end{figure}
+
+In the above frequency display the local FM broadcast stations are easily spotted.  This consistent and reliable spectrum made the remaining tests easy to accomplish.
+
+\section{Adding the Digital RF Sink}
+
+The ``RF Channel Sink'' is dragged from the ``No Module Specified -> Digital RF'' from the GRC Library menu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.55\textwidth]{photos/rf_channel_sink}
+	\centering\bfseries
+	\caption{The Digital RF Channel Sink}
+\end{figure}
+
+The options required for this sink are simple:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{photos/rf_channel_options}
+	\centering\bfseries
+	\caption{Digital RF Channel Sink Options}
+\end{figure}
+
+``Directory'' is the file path to which the data will be written.  Make sure this is a high bandwidth path!  I used a path in my home directory which is written to a SATA SSD drive.  It's very fast!
+
+Chose the type of data.  I am currently using Complexfloat32, which is probably more resolution than required.  The sample rate uses the same variable ``samp\_rate'' used throughout the flowgraph.
+
+``Start'' is the time-stamp for the beginning of the data.  I used an ISO8601 formatted string.  The string is obtained via a Python module which is included via the ``Python Module'' component located in the ``Misc'' menu of the library.
+
+\subsection{Python Time Stamping Module}
+
+The Python module which generates the time stamp for the RF Channel Sink:
+
+\begin{verbatim}
+import datetime
+
+iso_time = datetime.datetime.now().replace(microsecond=0).isoformat() +'Z'
+\end{verbatim}
+
+The above code is typed into the ``Code'' editor in the Python Module component GUI.
+
+The module's ID is the name of the module.  Returning a time string is this one-liner:
+
+\begin{verbatim}
+time_stamp_start.iso_time
+\end{verbatim}
+
+The above is typed into the ``Start'' entry of the RF Channel Sink.
+
+It is a bit unclear how this time stamping function works.  Is there significant latency between the retrieval of the time and the capture of the first sample?  For now, it is close enough.
+
+\section{Writing an HDF5 Format Data File with the Digital RF Sink}
+
+Make sure the Digital RF Channel Sink is enabled and connected to the RSP2 Source component.
+
+Simply run the Flowgraph.  The HDF5 formatted file system will be written to the Directory path entered in the sink component.  That's it!
+
+A quick one-minute run with 5 MHz bandwidth created 5 gigabytes of data!
+
+\section{Reading the HDF5 Data Into the Flowgraph}
+
+Instantiate a Digital RF Channel Source into your flowgraph:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{photos/rf_channel_source}
+	\centering\bfseries
+	\caption{Digital RF Channel Source}
+\end{figure}
+
+The source has the following options:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.55\textwidth]{photos/rf_channel_source_options}
+	\centering\bfseries
+	\caption{Digital RF Channel Source Options}
+\end{figure}
+
+The option for ``Directory'' should be the same file path entered into the sink component.  Switch ``Repeat'' to ``Yes''.
+
+Deactivate the RSP2 source and the RF Channel Sink.  Connect the output of the RF Channel Source to the input of the Frequency Translating FIR filter and the QT GUI Sink.
+
+Run the flowgraph.  If your system is fast enough, it will appear as though the RSP2 hardware is still connected!  I was able to tune and demodulate several of the captured FM broadcast stations.  There is a noticeable gap when the file repeats.  It is really amazing to smoothly stream 5 MHz of spectrum from a 5 gigabyte file which plays in one minute on commodity hardware!
+
+Reading and writing to the SSD drive worked very well.  It will be used as the ``standard'' for comparison to other hardware.
